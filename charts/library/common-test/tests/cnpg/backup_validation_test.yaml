@@ -79,7 +79,7 @@ tests:
       credentials:
         test:
           type: s3
-          url: some-url
+          url: https://valid-url.com
           bucket: some-bucket
           encrKey: some-encr-key
           accessKey: some-access-key
