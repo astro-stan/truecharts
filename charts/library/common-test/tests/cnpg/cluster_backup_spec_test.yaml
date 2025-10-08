@@ -105,33 +105,33 @@ tests:
             credentials: test
             destinationPath: some-path
     asserts:
-      - documentIndex: *secretDoc
+      - documentIndex: &secretCredDoc 2
         isKind:
           of: Secret
-      - documentIndex: *secretDoc
+      - documentIndex: *secretCredDoc
         isAPIVersion:
           of: v1
-      - documentIndex: *secretDoc
+      - documentIndex: *secretCredDoc
         equal:
           path: metadata.name
           value: test-release-name-common-test-cnpg-my-pg-provider-backup-s3-creds
-      - documentIndex: *secretDoc
+      - documentIndex: *secretCredDoc
         equal:
           path: stringData
           value:
             ACCESS_KEY_ID: some-access-key
             ACCESS_SECRET_KEY: some-secret-key
-      - documentIndex: &secretCADoc 2
+      - documentIndex: &secretCustomCACADoc 1
         isKind:
           of: Secret
-      - documentIndex: *secretCADoc
+      - documentIndex: *secretCustomCACADoc
         isAPIVersion:
           of: v1
-      - documentIndex: *secretCADoc
+      - documentIndex: *secretCustomCACADoc
         equal:
           path: metadata.name
           value: test-release-name-common-test-cnpg-my-pg-provider-backup-s3-ca
-      - documentIndex: *secretCADoc
+      - documentIndex: *secretCustomCACADoc
         equal:
           path: stringData
           value:
@@ -210,33 +210,33 @@ tests:
             credentials: test
             destinationPath: some-path
     asserts:
-      - documentIndex: *secretDoc
+      - documentIndex: *secretCredDoc
         isKind:
           of: Secret
-      - documentIndex: *secretDoc
+      - documentIndex: *secretCredDoc
         isAPIVersion:
           of: v1
-      - documentIndex: *secretDoc
+      - documentIndex: *secretCredDoc
         equal:
           path: metadata.name
           value: test-release-name-common-test-cnpg-my-pg-provider-backup-s3-creds
-      - documentIndex: *secretDoc
+      - documentIndex: *secretCredDoc
         equal:
           path: stringData
           value:
             ACCESS_KEY_ID: some-access-key
             ACCESS_SECRET_KEY: some-secret-key
-      - documentIndex: *secretCADoc
+      - documentIndex: &secretCustomCASecretRefCADoc 3
         isKind:
           of: Secret
-      - documentIndex: *secretCADoc
+      - documentIndex: *secretCustomCASecretRefCADoc
         isAPIVersion:
           of: v1
-      - documentIndex: *secretCADoc
+      - documentIndex: *secretCustomCASecretRefCADoc
         equal:
           path: metadata.name
           value: test-release-name-common-test-my-secret
-      - documentIndex: *secretCADoc
+      - documentIndex: *secretCustomCASecretRefCADoc
         equal:
           path: stringData
           value:
