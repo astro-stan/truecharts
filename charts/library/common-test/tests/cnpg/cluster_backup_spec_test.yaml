@@ -226,7 +226,7 @@ tests:
           value:
             ACCESS_KEY_ID: some-access-key
             ACCESS_SECRET_KEY: some-secret-key
-      - documentIndex: &secretCustomCASecretRefCADoc 3
+      - documentIndex: &secretCustomCASecretRefCADoc 4
         isKind:
           of: Secret
       - documentIndex: *secretCustomCASecretRefCADoc
