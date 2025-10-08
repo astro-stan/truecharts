@@ -258,13 +258,14 @@ tests:
 
   - it: should generate correct spec with recovery/objectStore using customCASecretRef (s3)
     set:
-      my-secret:
-        enabled: true
-        data:
-          my-key: |-
-            -----BEGIN CERTIFICATE-----
-            ...
-            -----END CERTIFICATE-----
+      secret:
+        my-secret:
+          enabled: true
+          data:
+            my-key: |-
+              -----BEGIN CERTIFICATE-----
+              ...
+              -----END CERTIFICATE-----
       credentials:
         test:
           type: s3
