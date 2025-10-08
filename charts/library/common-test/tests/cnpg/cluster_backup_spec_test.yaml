@@ -105,17 +105,17 @@ tests:
             credentials: test
             destinationPath: some-path
     asserts:
-      - documentIndex: &secretCredDoc 2
+      - documentIndex: &secretCustomCACredDoc 2
         isKind:
           of: Secret
-      - documentIndex: *secretCredDoc
+      - documentIndex: *secretCustomCACredDoc
         isAPIVersion:
           of: v1
-      - documentIndex: *secretCredDoc
+      - documentIndex: *secretCustomCACredDoc
         equal:
           path: metadata.name
           value: test-release-name-common-test-cnpg-my-pg-provider-backup-s3-creds
-      - documentIndex: *secretCredDoc
+      - documentIndex: *secretCustomCACredDoc
         equal:
           path: stringData
           value:
@@ -210,17 +210,17 @@ tests:
             credentials: test
             destinationPath: some-path
     asserts:
-      - documentIndex: *secretCredDoc
+      - documentIndex: *secretDoc
         isKind:
           of: Secret
-      - documentIndex: *secretCredDoc
+      - documentIndex: *secretDoc
         isAPIVersion:
           of: v1
-      - documentIndex: *secretCredDoc
+      - documentIndex: *secretDoc
         equal:
           path: metadata.name
           value: test-release-name-common-test-cnpg-my-pg-provider-backup-s3-creds
-      - documentIndex: *secretCredDoc
+      - documentIndex: *secretDoc
         equal:
           path: stringData
           value:
