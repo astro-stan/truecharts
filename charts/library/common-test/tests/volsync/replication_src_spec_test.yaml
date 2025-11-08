@@ -437,7 +437,7 @@ tests:
               src:
                 enabled: true
       credentials:
-        mys3:
+        Mys3:
           type: s3
           url: http://some-url
           bucket: some-bucket
