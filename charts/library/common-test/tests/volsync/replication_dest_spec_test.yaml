@@ -431,7 +431,7 @@ tests:
           volsync:
             - name: mybackup1
               type: restic
-              credentials: mys3
+              credentials: Mys3
               dest:
                 enabled: true
               src:
