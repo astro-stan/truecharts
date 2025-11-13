@@ -7,10 +7,6 @@ sidecarImage:
   repository: ghcr.io/kiwigrid/k8s-sidecar
   tag: 2.1.2@sha256:8b875915be0869624cf5dfd48a1dfbfb627e778793cc1612d00fb281a8805c63
 
-curlImage:
-  repository: docker.io/alpine/curl
-  tag: 8.14.1@sha256:2a83c270ee6a8c637e191c0dd05a321c1362a9f1bf82b2b6f1d8bf14b0a862e3
-
 # Define extra dashboards to be provisioned
 # Supports 2 formats:
 # - Importing directly from `grafana.com` via Grafana dashboard ID & revision
@@ -46,7 +42,7 @@ workload:
         remote-dashboard-loader:
           enabled: true
           type: init
-          imageSelector: curlImage
+          imageSelector: wgetImage
           command: /remote-dashboard-loader.sh
       containers:
         main:

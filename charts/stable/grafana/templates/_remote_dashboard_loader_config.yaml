@@ -24,16 +24,15 @@ remote-dashboard-loader:
           {{- if $url }}
 
       echo "Downloading '{{ $url }}' into '{{ $fileName }}'"
-      curl \
+      wget \
           {{- range $headerKey, $headerValue := $requestHeaders }}
-          -H "{{ $headerKey }}: {{ $headerValue }}" \
+          --header "{{ $headerKey }}: {{ $headerValue }}" \
           {{- end }}
-          -L \
-          --connect-timeout 60 \
-          --max-time 60 \
-          --fail \
-          -o {{ $fileName }} \
+          -Y on \
+          -T 60 \
+          -O {{ $fileName }} \
           {{ $url }}{{if not $objectData.failOnError }} || true{{ end }}
+      echo
           {{- end }}
         {{- end -}}
       {{- end -}}
