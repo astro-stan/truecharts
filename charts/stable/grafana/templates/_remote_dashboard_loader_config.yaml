@@ -16,8 +16,8 @@ remote-dashboard-loader:
           {{- $url := "" -}}
           {{- if $objectData.url -}}
             {{- $url = $objectData.url -}}
-          {{- else if and $objectData.grafana_id $objectData.grafana_revision -}}
-            {{- $url = (printf $grafanaApiUrl $objectData.grafana_id $objectData.grafana_revision) -}}
+          {{- else if and (kindIs "map" $objectData.grafana) $objectData.grafana.id $objectData.grafana.revision -}}
+            {{- $url = (printf $grafanaApiUrl $objectData.grafana.id $objectData.grafana.revision) -}}
           {{- end -}}
 
           {{- if $url }}
