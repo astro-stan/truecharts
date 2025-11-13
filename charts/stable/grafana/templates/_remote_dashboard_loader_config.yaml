@@ -11,14 +11,14 @@ remote-dashboard-loader:
     remote-dashboard-loader.sh: |
       #!/usr/bin/env sh
       set -e
-      {{- range $name, $objectData := $rootCtx.Values.extraDashboards }}
-        {{- if ($objectData.enabled | default false) -}}
+      {{- range $name, $objectData := $rootCtx.Values.dashboards.grafana }}
+        {{- if $objectData.enabled -}}
           {{ $fileName := (printf "%v/%v.json" $outputDir $name) -}}
           {{- $url := "" -}}
           {{- if $objectData.url -}}
             {{- $url = $objectData.url -}}
-          {{- else if and (kindIs "map" $objectData.grafana) $objectData.grafana.id $objectData.grafana.revision -}}
-            {{- $url = (printf $grafanaApiUrl $objectData.grafana.id $objectData.grafana.revision) -}}
+          {{- else if and (kindIs "map" $objectData.marketplace) $objectData.marketplace.id $objectData.marketplace.revision -}}
+            {{- $url = (printf $grafanaApiUrl $objectData.marketplace.id $objectData.marketplace.revision) -}}
           {{- end -}}
 
           {{- if $url }}
