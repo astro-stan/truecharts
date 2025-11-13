@@ -21,8 +21,9 @@ extraDashboards: {}
 #     url: https://raw.githubusercontent.com/rook/rook/refs/heads/master/deploy/examples/monitoring/grafana/Ceph%20Cluster%20Dashboard.json
 #   prometheus-smart-exporter:
 #     enabled: true
-#     grafana_id: 20204
-#     grafana_revision: 1
+#     grafana:
+#       id: 20204
+#       revision: 1
 
 securityContext:
   container:
