@@ -20,6 +20,10 @@ externaldns:
   piholePassword: ""
   piholeAPIVersion: ""
   triggerLoopOnEvent: "false"
+  # with externaldns.provider = pdns
+  pdns:
+    pdnsApiKey: ""
+    pdnsServerUrl: ""
   txtOwnerId: ""
   txtPrefix: ""
   txtSuffix: ""

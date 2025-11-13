@@ -39,5 +39,5 @@ sources:
   - https://github.com/tigerblue77/Dell_iDRAC_fan_controller_Docker
   - https://github.com/trueforge-org/truecharts/tree/master/charts/stable/dell-idrac-fan-controller
 type: application
-version: 8.11.4
+version: 8.11.5
 

@@ -37,5 +37,5 @@ sources:
   - https://github.com/trueforge-org/truecharts/tree/master/charts/stable/duplicati
   - https://hub.docker.com/r/duplicati/duplicati
 type: application
-version: 16.11.4
+version: 16.11.5
 

@@ -39,5 +39,5 @@ sources:
   - https://github.com/trueforge-org/truecharts/tree/master/charts/stable/kiwix-serve
   - https://www.kiwix.org/
 type: application
-version: 11.12.2
+version: 11.12.3
 
