@@ -30,7 +30,7 @@ remote-dashboard-loader:
           -L \
           --connect-timeout 60 \
           --max-time 60 \
-          --fail \
+          {{ if $objectData.failOnError }}--fail {{ end }}\
           -o {{ $fileName }} \
           {{ $url }}
           {{- end }}
