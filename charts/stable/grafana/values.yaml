@@ -18,9 +18,11 @@ curlImage:
 extraDashboards: {}
 #   ceph-cluster:
 #     enabled: true
+#     failOnError: true
 #     url: https://raw.githubusercontent.com/rook/rook/refs/heads/master/deploy/examples/monitoring/grafana/Ceph%20Cluster%20Dashboard.json
 #   prometheus-smart-exporter:
 #     enabled: true
+#     failOnError: false
 #     grafana:
 #       id: 20204
 #       revision: 1
