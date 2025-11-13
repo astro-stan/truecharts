@@ -41,7 +41,7 @@ workload:
     strategy: Recreate
     podSpec:
       initContainers:
-        dashboards-fetch:
+        remote-dashboard-loader:
           enabled: true
           type: init
           imageSelector: curlImage
@@ -325,7 +325,7 @@ persistence:
     readOnly: true
     targetSelector:
       main:
-        dashboards-fetch: {}
+        remote-dashboard-loader: {}
   sc-datasource-volume:
     enabled: true
     type: emptyDir
