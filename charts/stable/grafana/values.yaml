@@ -321,7 +321,7 @@ persistence:
     objectName: remote-dashboard-loader
     subPath: remote-dashboard-loader.sh
     mountPath: /remote-dashboard-loader.sh
-    defaultMode: "0655"
+    defaultMode: "0555"
     readOnly: true
     targetSelector:
       main:
