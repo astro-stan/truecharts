@@ -1,0 +1,37 @@
+{{/* Define the script */}}
+{{- define "grafana.remote_dashboard_loader" -}}
+{{- $rootCtx := .rootCtx -}}
+{{- $outputDir := .outputDir -}}
+{{- $grafanaApiUrl := "https://grafana.com/api/dashboards/%v/revisions/%v/download" -}}
+{{- $requestHeaders := (dict "Accept" "application/json") -}}
+
+remote-dashboard-loader:
+  enabled: true
+  data:
+    remote-dashboard-loader.sh: |
+      #!/usr/bin/env sh
+      {{- range $name, $objectData := $rootCtx.Values.extraDashboards }}
+        {{- if ($objectData.enabled | default false) -}}
+          {{ $fileName := (printf "%v/%v.json" $outputDir $name) -}}
+          {{- $url := "" -}}
+          {{- if $objectData.url -}}
+            {{- $url = $objectData.url -}}
+          {{- else if and $objectData.grafana_id $objectData.grafana_revision -}}
+            {{- $url = (printf $grafanaApiUrl $objectData.grafana_id $objectData.grafana_revision) -}}
+          {{- end -}}
+
+          {{- if $url }}
+
+      curl \
+          {{- range $headerKey, $headerValue := $requestHeaders }}
+          -H "{{ $headerKey }}: {{ $headerValue }}" \
+          {{- end }}
+          -L \
+          --connect-timeout 60 \
+          --max-time 60 \
+          -o {{ $fileName }} \
+          {{ $url }}
+          {{- end }}
+        {{- end -}}
+      {{- end -}}
+{{- end -}}

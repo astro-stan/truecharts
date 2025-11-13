@@ -7,6 +7,23 @@ sidecarImage:
   repository: ghcr.io/kiwigrid/k8s-sidecar
   tag: 2.1.2@sha256:8b875915be0869624cf5dfd48a1dfbfb627e778793cc1612d00fb281a8805c63
 
+curlImage:
+  repository: docker.io/alpine/curl
+  tag: 8.14.1
+
+# Define extra dashboards to be provisioned
+# Supports 2 formats:
+# - Importing directly from `grafana.com` via Grafana dashboard ID & revision
+# - Importing from any URL that returns a JSON file
+extraDashboards: {}
+#   ceph-cluster:
+#     enabled: true
+#     url: https://raw.githubusercontent.com/rook/rook/refs/heads/master/deploy/examples/monitoring/grafana/Ceph%20Cluster%20Dashboard.json
+#   prometheus-smart-exporter:
+#     enabled: true
+#     grafana_id: 20204
+#     grafana_revision: 1
+
 securityContext:
   container:
     readOnlyRootFilesystem: false
@@ -22,6 +39,12 @@ workload:
     replicas: 1
     strategy: Recreate
     podSpec:
+      initContainers:
+        dashboards-fetch:
+          enabled: true
+          type: init
+          imageSelector: curlImage
+          command: /remote-dashboard-loader.sh
       containers:
         main:
           env:
@@ -291,6 +314,17 @@ persistence:
     objectName: dashboard-provider
     mountPath: /etc/grafana/provisioning/dashboards/sc-dashboardproviders.yaml
     subPath: provider.yaml
+  remote-dashboard-loader-config:
+    enabled: true
+    type: configmap
+    objectName: remote-dashboard-loader
+    subPath: remote-dashboard-loader.sh
+    mountPath: /remote-dashboard-loader.sh
+    defaultMode: "0655"
+    readOnly: true
+    targetSelector:
+      main:
+        dashboards-fetch: {}
   sc-datasource-volume:
     enabled: true
     type: emptyDir
