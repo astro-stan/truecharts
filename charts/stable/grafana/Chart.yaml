@@ -42,4 +42,4 @@ sources:
   - https://grafana.com/
   - https://hub.docker.com/r/grafana/grafana
 type: application
-version: 20.2.0
+version: 21.0.0
