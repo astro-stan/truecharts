@@ -10,6 +10,7 @@ remote-dashboard-loader:
   data:
     remote-dashboard-loader.sh: |
       #!/usr/bin/env sh
+      set -e
       {{- range $name, $objectData := $rootCtx.Values.extraDashboards }}
         {{- if ($objectData.enabled | default false) -}}
           {{ $fileName := (printf "%v/%v.json" $outputDir $name) -}}
