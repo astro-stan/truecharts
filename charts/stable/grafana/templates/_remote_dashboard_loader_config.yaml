@@ -29,6 +29,7 @@ remote-dashboard-loader:
           -L \
           --connect-timeout 60 \
           --max-time 60 \
+          --fail \
           -o {{ $fileName }} \
           {{ $url }}
           {{- end }}
