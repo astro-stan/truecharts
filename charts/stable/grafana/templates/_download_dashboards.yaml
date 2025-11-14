@@ -1,6 +1,6 @@
 {{/* Define the script */}}
 {{- define "grafana.download_dashboards" -}}
-{{- $rootCtx := .rootCtx -}}
+{{- $dashboards := .dashboards -}}
 {{- $outputDir := .outputDir -}}
 {{- $grafanaApiUrl := "https://grafana.com/api/dashboards/%v/revisions/%v/download" -}}
 {{- $requestHeaders := (dict "Accept" "application/json") -}}
@@ -11,7 +11,7 @@ download-dashboards:
     download_dashboards.sh: |
       #!/usr/bin/env sh
       set -eo pipefail
-      {{- range $name, $objectData := $rootCtx.Values.dashboards.grafana }}
+      {{- range $name, $objectData := $dashboards }}
         {{- if $objectData.enabled -}}
           {{ $fileName := (printf "%v/%v.json" $outputDir $name) -}}
           {{- $url := "" -}}
