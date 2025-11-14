@@ -10,7 +10,7 @@ remote-dashboard-loader:
   data:
     remote-dashboard-loader.sh: |
       #!/usr/bin/env sh
-      set -e
+      set -eo pipefail
       {{- range $name, $objectData := $rootCtx.Values.dashboards.grafana }}
         {{- if $objectData.enabled -}}
           {{ $fileName := (printf "%v/%v.json" $outputDir $name) -}}
@@ -30,8 +30,41 @@ remote-dashboard-loader:
           {{- end }}
           -Y on \
           -T 60 \
-          -O {{ $fileName }} \
-          {{ $url }}{{if not $objectData.failOnError }} || true{{ end }}
+          -O  - \
+          {{ $url }} \
+      {{- if $objectData.b64content }}
+      | base64 -d \
+      {{- end }}
+      > {{ $fileName }}{{ if $objectData.datasource }} \
+      && jq '
+          (.. | select(objects | has("datasource")) | .datasource | select(type == "string")) |=
+            if test("-- .* --") then
+                .
+            else
+        {{- if kindIs "string" $objectData.datasource }}
+                "{{ $objectData.datasource }}"
+        {{- else if kindIs "slice" $objectData.datasource }}
+          {{- range $index, $source := $objectData.datasource }}
+            {{- if eq $index 0 }}
+                if . == "{{ $source.name }}" then
+                    "{{ $source.value }}"
+            {{- else }}
+                elif . == "{{ $source.name }}" then
+                    "{{ $source.value }}"
+            {{- end }}
+            {{- if eq $index (sub (len $objectData.datasource) 1) }}
+                else
+                    .
+                end
+            {{- end }}
+          {{- end }}
+        {{- else }}
+                .
+        {{- end }}
+            end
+         ' < {{ $fileName }} > {{ $fileName }}.tmp \
+      && mv {{ $fileName }}.tmp {{ $fileName }}{{ end }}{{if not $objectData.failOnError }} \
+      || true{{ end }}
       echo
           {{- end }}
         {{- end -}}
