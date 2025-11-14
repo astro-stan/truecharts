@@ -132,11 +132,11 @@ workload:
     strategy: Recreate
     podSpec:
       initContainers:
-        remote-dashboard-loader:
+        download_dashboards:
           enabled: true
           type: init
           imageSelector: alpineImage
-          command: /remote-dashboard-loader.sh
+          command: /download_dashboards.sh
       containers:
         main:
           env:
@@ -384,17 +384,17 @@ persistence:
     objectName: dashboard-provider
     mountPath: /etc/grafana/provisioning/dashboards/sc-dashboardproviders.yaml
     subPath: provider.yaml
-  remote-dashboard-loader-config:
+  download-dashboards-config:
     enabled: true
     type: configmap
-    objectName: remote-dashboard-loader
-    subPath: remote-dashboard-loader.sh
-    mountPath: /remote-dashboard-loader.sh
+    objectName: download-dashboards
+    subPath: download_dashboards.sh
+    mountPath: /download_dashboards.sh
     defaultMode: "0555"
     readOnly: true
     targetSelector:
       main:
-        remote-dashboard-loader: {}
+        download_dashboards: {}
   sc-datasource-volume:
     enabled: true
     type: emptyDir

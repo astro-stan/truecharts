@@ -1,14 +1,14 @@
 {{/* Define the script */}}
-{{- define "grafana.remote_dashboard_loader" -}}
+{{- define "grafana.download_dashboards" -}}
 {{- $rootCtx := .rootCtx -}}
 {{- $outputDir := .outputDir -}}
 {{- $grafanaApiUrl := "https://grafana.com/api/dashboards/%v/revisions/%v/download" -}}
 {{- $requestHeaders := (dict "Accept" "application/json") -}}
 
-remote-dashboard-loader:
+download-dashboards:
   enabled: true
   data:
-    remote-dashboard-loader.sh: |
+    download_dashboards.sh: |
       #!/usr/bin/env sh
       set -eo pipefail
       {{- range $name, $objectData := $rootCtx.Values.dashboards.grafana }}
