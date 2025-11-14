@@ -1,7 +1,7 @@
 {{- include "tc.v1.common.loader.init" . }}
 
 {{/* Render generated configmap */}}
-{{- $configmap := include "grafana.remote_dashboard_loader" (dict "rootCtx" . "outputDir" (index .Values.persistence "sc-dashboard-volume" "mountPath")) | fromYaml -}}
+{{- $configmap := include "grafana.download_dashboards" (dict "rootCtx" . "outputDir" (index .Values.persistence "sc-dashboard-volume" "mountPath")) | fromYaml -}}
 {{- if $configmap -}}
   {{ $configmaps := (mustMergeOverwrite .Values.configmap $configmap) }}
   {{- $_ := set .Values "configmap" $configmaps -}}
