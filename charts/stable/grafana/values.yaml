@@ -132,11 +132,11 @@ workload:
     strategy: Recreate
     podSpec:
       initContainers:
-        download_dashboards:
+        download-dashboards:
           enabled: true
           type: init
           imageSelector: alpineImage
-          command: /download_dashboards.sh
+          command: /download-dashboards.sh
       containers:
         main:
           env:
@@ -388,13 +388,13 @@ persistence:
     enabled: true
     type: configmap
     objectName: download-dashboards
-    subPath: download_dashboards.sh
-    mountPath: /download_dashboards.sh
+    subPath: download-dashboards.sh
+    mountPath: /download-dashboards.sh
     defaultMode: "0555"
     readOnly: true
     targetSelector:
       main:
-        download_dashboards: {}
+        download-dashboards: {}
   sc-datasource-volume:
     enabled: true
     type: emptyDir

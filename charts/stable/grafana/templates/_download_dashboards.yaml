@@ -8,7 +8,7 @@
 download-dashboards:
   enabled: true
   data:
-    download_dashboards.sh: |
+    download-dashboards.sh: |
       #!/usr/bin/env sh
       set -eo pipefail
       {{- range $name, $objectData := $dashboards }}
