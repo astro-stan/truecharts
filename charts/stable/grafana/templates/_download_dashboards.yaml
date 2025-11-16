@@ -40,7 +40,7 @@ download-dashboards:
         {{- if kindIs "string" $objectData.datasource }}
           (.. | select(objects | has("datasource")) | .datasource | select(type == "string")) |=
         {{- else if kindIs "slice" $objectData.datasource }}
-          (.. | select(objects) | select(type == "string")) |=
+          (.. | strings) |=
         {{- end }}
             if test("-- .* --") then
                 .
