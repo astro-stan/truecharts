@@ -28,7 +28,7 @@ sidecarImage:
 #     id: 1234
 #     revision: 1
 #   datasource: <replacement>
-#```
+# ```
 #
 # 2. To replace all datasources, regardless of the key name with the value of
 #    `<replacement>`, use the follwing format:
@@ -44,7 +44,7 @@ sidecarImage:
 #       value: <replacement 1>
 #     - name: <data source 2 name>
 #       value: <replacement 2>
-#```
+# ```
 #
 # We recommend to always use variant 2 when replacing datasources, as it is often
 # found to be more robust than variant 1
