@@ -49,11 +49,15 @@ download-dashboards:
                 "{{ $objectData.datasource }}"
         {{- else if kindIs "slice" $objectData.datasource }}
           {{- range $index, $source := $objectData.datasource }}
+            {{- $ds := $source.name -}}
+            {{- if and (not (hasPrefix "${" $ds)) (not (hasSuffix "}" $ds)) -}}
+              {{- $ds = (printf "${%v}" $ds) -}}
+            {{- end -}}
             {{- if eq $index 0 }}
-                if . == "{{ $source.name }}" then
+                if . == "{{ $ds }}" then
                     "{{ $source.value }}"
             {{- else }}
-                elif . == "{{ $source.name }}" then
+                elif . == "{{ $ds }}" then
                     "{{ $source.value }}"
             {{- end }}
             {{- if eq $index (sub (len $objectData.datasource) 1) }}
