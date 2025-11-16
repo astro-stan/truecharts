@@ -37,31 +37,38 @@ download-dashboards:
       {{- end }}
       > {{ $fileName }}{{ if $objectData.datasource }} \
       && jq '
-          (.. | select(objects | has("datasource")) | .datasource | select(type == "string")) |=
-            if test("-- .* --") then
-                .
-            else
+          def update_ds:
+              if type == "string" then
+                  if test("-- .* --") then
+                      .
+                  else
         {{- if kindIs "string" $objectData.datasource }}
-                "{{ $objectData.datasource }}"
+                      "{{ $objectData.datasource }}"
         {{- else if kindIs "slice" $objectData.datasource }}
           {{- range $index, $source := $objectData.datasource }}
             {{- if eq $index 0 }}
-                if . == "{{ $source.name }}" then
-                    "{{ $source.value }}"
+                      if . == "{{ $source.name }}" then
+                          "{{ $source.value }}"
             {{- else }}
-                elif . == "{{ $source.name }}" then
-                    "{{ $source.value }}"
+                      elif . == "{{ $source.name }}" then
+                          "{{ $source.value }}"
             {{- end }}
             {{- if eq $index (sub (len $objectData.datasource) 1) }}
-                else
-                    .
-                end
+                      else
+                          .
+                      end
             {{- end }}
           {{- end }}
         {{- else }}
-                .
+                      .
         {{- end }}
-            end
+                 end
+              elif type == "object" and has("uid") then
+                  .uid |= update_ds
+              else
+                  .
+              end;
+          (.. | select(objects | has("datasource")) | .datasource) |= update_ds
          ' < {{ $fileName }} > {{ $fileName }}.tmp \
       && mv {{ $fileName }}.tmp {{ $fileName }}{{ end }}{{if not $objectData.failOnError }} \
       || true{{ end }}
