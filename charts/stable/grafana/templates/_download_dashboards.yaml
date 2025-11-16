@@ -37,7 +37,11 @@ download-dashboards:
       {{- end }}
       > {{ $fileName }}{{ if $objectData.datasource }} \
       && jq '
+        {{- if kindIs "string" $objectData.datasource }}
           (.. | select(objects | has("datasource")) | .datasource | select(type == "string")) |=
+        {{- else if kindIs "slice" $objectData.datasource }}
+          (.. | select(objects) | select(type == "string")) |=
+        {{- end }}
             if test("-- .* --") then
                 .
             else
