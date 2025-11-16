@@ -16,39 +16,6 @@ sidecarImage:
 # - base64 decoded
 # - have its datasources replaced
 #
-# When replacing datasources, one of two variants can be used:
-#
-# 1. To replace all `*.datasource` keys holding string values with the value of
-#    `<replacement>`, use `datasource: <replacement>`. Example:
-#
-# ```yaml
-# chart-name:
-#   enabled: true
-#   marketplace:
-#     id: 1234
-#     revision: 1
-#   datasource: <replacement>
-# ```
-#
-# 2. To replace all datasources, regardless of the key name with the value of
-#    `<replacement>`, use the follwing format:
-#
-# ```yaml
-# chart-name:
-#   enabled: true
-#   marketplace:
-#     id: 1234
-#     revision: 1
-#   datasource:
-#     - name: <data source 1 name>
-#       value: <replacement 1>
-#     - name: <data source 2 name>
-#       value: <replacement 2>
-# ```
-#
-# We recommend to always use variant 2 when replacing datasources, as it is often
-# found to be more robust than variant 1
-#
 # See values below for more examples
 dashboards:
   grafana:

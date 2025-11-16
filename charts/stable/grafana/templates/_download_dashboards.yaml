@@ -37,39 +37,25 @@ download-dashboards:
       {{- end }}
       > {{ $fileName }}{{ if $objectData.datasource }} \
       && jq '
-        {{- if kindIs "string" $objectData.datasource }}
-          (.. | select(objects | has("datasource")) | .datasource | select(type == "string")) |=
-        {{- else if kindIs "slice" $objectData.datasource }}
           (.. | strings) |=
-        {{- end }}
-            if test("-- .* --") then
-                .
-            else
-        {{- if kindIs "string" $objectData.datasource }}
-                "{{ $objectData.datasource }}"
-        {{- else if kindIs "slice" $objectData.datasource }}
           {{- range $index, $source := $objectData.datasource }}
             {{- $ds := $source.name -}}
             {{- if and (not (hasPrefix "${" $ds)) (not (hasSuffix "}" $ds)) -}}
               {{- $ds = (printf "${%v}" $ds) -}}
             {{- end -}}
             {{- if eq $index 0 }}
-                if . == "{{ $ds }}" then
-                    "{{ $source.value }}"
+            if . == "{{ $ds }}" then
+                "{{ $source.value }}"
             {{- else }}
-                elif . == "{{ $ds }}" then
-                    "{{ $source.value }}"
+            elif . == "{{ $ds }}" then
+                "{{ $source.value }}"
             {{- end }}
             {{- if eq $index (sub (len $objectData.datasource) 1) }}
-                else
-                    .
-                end
+            else
+                .
+            end
             {{- end }}
           {{- end }}
-        {{- else }}
-                .
-        {{- end }}
-            end
          ' < {{ $fileName }} > {{ $fileName }}.tmp \
       && mv {{ $fileName }}.tmp {{ $fileName }}{{ end }}{{if not $objectData.failOnError }} \
       || true{{ end }}
