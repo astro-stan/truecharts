@@ -39,15 +39,11 @@ download-dashboards:
       && jq '
           (.. | strings) |=
           {{- range $index, $source := $objectData.datasource }}
-            {{- $ds := $source.name -}}
-            {{- if and (not (hasPrefix "${" $ds)) (not (hasSuffix "}" $ds)) -}}
-              {{- $ds = (printf "${%v}" $ds) -}}
-            {{- end -}}
             {{- if eq $index 0 }}
-            if . == "{{ $ds }}" then
+            if . == "{{ $source.name }}" then
                 "{{ $source.value }}"
             {{- else }}
-            elif . == "{{ $ds }}" then
+            elif . == "{{ $source.name }}" then
                 "{{ $source.value }}"
             {{- end }}
             {{- if eq $index (sub (len $objectData.datasource) 1) }}

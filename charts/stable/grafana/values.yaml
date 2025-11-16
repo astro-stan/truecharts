@@ -24,7 +24,7 @@ dashboards:
       failOnError: false
       b64content: false
       datasource:
-        - name: "DS_PROMETHEUS"
+        - name: "${DS_PROMETHEUS}"
           value: Prometheus
       url: https://raw.githubusercontent.com/rook/rook/refs/tags/v1.18.7/deploy/examples/monitoring/grafana/Ceph%20Cluster%20Dashboard.json
     ceph-osd-single:
@@ -32,7 +32,7 @@ dashboards:
       failOnError: false
       b64content: false
       datasource:
-        - name: "DS_PROMETHEUS"
+        - name: "${DS_PROMETHEUS}"
           value: Prometheus
       url: https://github.com/rook/rook/raw/refs/tags/v1.18.7/deploy/examples/monitoring/grafana/Ceph%20OSD%20Single%20Dashboard.json
     ceph-pools:
@@ -40,7 +40,7 @@ dashboards:
       failOnError: false
       b64content: false
       datasource:
-        - name: "DS_PROMETHEUS"
+        - name: "${DS_PROMETHEUS}"
           value: Prometheus
       url: https://github.com/rook/rook/raw/refs/tags/v1.18.7/deploy/examples/monitoring/grafana/Ceph%20Pools%20Dashboard.json
     cert-manager:
@@ -48,7 +48,7 @@ dashboards:
       failOnError: false
       b64content: false
       datasource:
-        - name: "DS_PROMETHEUS"
+        - name: "${DS_PROMETHEUS}"
           value: Prometheus
       marketplace:
         id: 20842
@@ -58,7 +58,7 @@ dashboards:
       failOnError: false
       b64content: false
       datasource:
-        - name: "DS_PROMETHEUS"
+        - name: "${DS_PROMETHEUS}"
           value: Prometheus
       marketplace:
         id: 20417
@@ -68,7 +68,7 @@ dashboards:
       failOnError: false
       b64content: false
       datasource:
-        - name: "DS_PROMETHEUS"
+        - name: "${DS_PROMETHEUS}"
           value: Prometheus
       url: https://github.com/fluxcd/flux2-monitoring-example/raw/82c37257787bba13a40b17bed9bd8191ee7aa049/monitoring/configs/dashboards/cluster.json
     flux-control-plane:
@@ -76,7 +76,7 @@ dashboards:
       failOnError: false
       b64content: false
       datasource:
-        - name: "DS_PROMETHEUS"
+        - name: "${DS_PROMETHEUS}"
           value: Prometheus
       url: https://github.com/fluxcd/flux2-monitoring-example/raw/82c37257787bba13a40b17bed9bd8191ee7aa049/monitoring/configs/dashboards/control-plane.json
     metallb:
@@ -84,7 +84,7 @@ dashboards:
       failOnError: false
       b64content: false
       datasource:
-        - name: "DS_PROMETHEUS"
+        - name: "${DS_PROMETHEUS}"
           value: Prometheus
       marketplace:
         id: 20162
@@ -94,7 +94,7 @@ dashboards:
       failOnError: false
       b64content: false
       datasource:
-        - name: "DS_PROMETHEUS"
+        - name: "${DS_PROMETHEUS}"
           value: Prometheus
       marketplace:
         id: 21146
@@ -104,7 +104,7 @@ dashboards:
       failOnError: false
       b64content: false
       datasource:
-        - name: "DS_PROMETHEUS"
+        - name: "${DS_PROMETHEUS}"
           value: Prometheus
       url: https://github.com/kubernetes-sigs/node-feature-discovery/raw/refs/tags/v0.18.3/examples/grafana-dashboard.json
     prometheus-smartctl-exporter:
@@ -112,7 +112,7 @@ dashboards:
       failOnError: false
       b64content: false
       datasource:
-        - name: "DS_PROMETHEUS"
+        - name: "${DS_PROMETHEUS}"
           value: Prometheus
       marketplace:
         id: 20204
@@ -122,7 +122,7 @@ dashboards:
       failOnError: false
       b64content: false
       datasource:
-        - name: "DS_PROMETHEUS"
+        - name: "${DS_PROMETHEUS}"
           value: Prometheus
       marketplace:
         id: 17346
