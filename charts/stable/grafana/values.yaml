@@ -115,8 +115,8 @@ dashboards:
         - name: "${DS_PROMETHEUS}"
           value: Prometheus
       marketplace:
-        id: 20204
-        revision: 1
+        id: 22604
+        revision: 2
     traefik:
       enabled: false
       failOnError: false
