@@ -96,9 +96,7 @@ dashboards:
       datasource:
         - name: "${DS_PROMETHEUS}"
           value: Prometheus
-      marketplace:
-        id: 21146
-        revision: 2
+      url: https://github.com/kubernetes/ingress-nginx/raw/refs/tags/ingress-nginx-3.15.2/deploy/grafana/dashboards/nginx.json
     node-feature-discovery:
       enabled: false
       failOnError: false
