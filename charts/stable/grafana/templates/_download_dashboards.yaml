@@ -43,7 +43,9 @@
 {{- $dashboards := .dashboards -}}
 {{- $outputDir := .outputDir -}}
 {{- $grafanaApiUrl := "https://grafana.com/api/dashboards/%v/revisions/%v/download" -}}
-{{- $requestHeaders := (dict "Accept" "application/json") -}}
+{{- $requestHeaders := (dict
+    "Accept" "application/json"
+    "Content-Type" "application/json;charset=UTF-8") -}}
 
 {{- include "grafana.download_dashboards.validate" (dict "dashboards" $dashboards) -}}
 
