@@ -78,9 +78,8 @@ download-dashboards:
           {{ $url }} \
       {{- if $objectData.b64content }}
       | base64 -d \
-      {{- end }}
-      > {{ $fileName }}{{ if $objectData.datasource }} \
-      && jq '
+      {{- end }}{{ if $objectData.datasource }}
+      | jq '
           (.. | strings) |=
           {{- range $index, $source := $objectData.datasource }}
             {{- if eq $index 0 }}
@@ -96,9 +95,8 @@ download-dashboards:
             end
             {{- end }}
           {{- end }}
-         ' < {{ $fileName }} > {{ $fileName }}.tmp \
-      && mv {{ $fileName }}.tmp {{ $fileName }}{{ end }}{{if not $objectData.failOnError }} \
-      || true{{ end }}
+        ' \{{ end }}
+      > {{ $fileName }}{{if not $objectData.failOnError }} || true{{ end }}
       echo
           {{- end }}
         {{- end -}}
