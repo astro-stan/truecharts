@@ -48,9 +48,11 @@ dashboards:
       failOnError: false
       b64content: false
       datasource:
-        - name: "$datasource"
+        - name: "${DS_PROMETHEUS}"
           value: Prometheus
-      url: https://github.com/monitoring-mixins/website/raw/f9b79ee93b46ee5e81e3b8001919deb6525f96ef/assets/cert-manager/dashboards/overview.json
+      marketplace:
+        id: 20842
+        revision: 3
     cnpg:
       enabled: false
       failOnError: false
