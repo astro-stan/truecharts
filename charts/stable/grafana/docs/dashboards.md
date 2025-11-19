@@ -45,10 +45,10 @@ dashboard:
 ### Some explanation of the values:
 - `enabled` turn on/off the dashboard
 - `failOnError` when enabled and dashboard fails to download, `init pod` will go into error and Grafana will not continue deploying.
-- `b64content` decodes automaticly base64 encrypted dashboards
-- `datasource {}` here can each variable been set which needs to be replaced, with a give value. You can lookup in the `dashboard.json` which variables needs to be set. Variable needs to be complete given as it is in the `dashboard.json`. So this can be included ` ${..}` , in deployments like flux you probable need to escape some characters.
+- `b64content` automaticly decodes base64 encoded dashboards
+- `datasource: { name: "", value: "" }` A list of maps where entry allows specifying a variable which needs to be replaced with a give value. You should lookup in the dashboard's JSON file which variables need to be set. Variable substitutions need to be as they appear in the JSON, including brackets (`${...}`), if present. Keep in mind that in deployments like flux you may need to escape some characters.
 - `id` numbered id from https://grafana.com/grafana/dashboards/.
 - `revision` numbered revision from https://grafana.com/grafana/dashboards/.
-- `url` url where to download the dashboard from. 
+- `url` url where to download the dashboard from.
 
 Note: It have to be `marketplace:` or `url:` both cannot be set at a time per dashboard.
