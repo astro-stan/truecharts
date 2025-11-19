@@ -37,7 +37,8 @@
     "github>trueforge-org/truecharts//.github/renovate/special/customRules.json5",
     "github>trueforge-org/truecharts//.github/renovate/special/customVersioning.json5",
     "github>trueforge-org/truecharts//.github/renovate/special/customTalosClustertool.json5",
-    "github>trueforge-org/truecharts//.github/renovate/special/devcontainer.json5"
+    "github>trueforge-org/truecharts//.github/renovate/special/devcontainer.json5",
+    "github>trueforge-org/truecharts//.github/renovate/special/grafanadashboards.json5"
   ],
   // Main Renovate configuration that lists package rules for various paths
   "packageRules": [

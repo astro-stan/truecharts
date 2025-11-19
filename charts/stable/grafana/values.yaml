@@ -51,6 +51,7 @@ dashboards:
         - name: "${DS_PROMETHEUS}"
           value: Prometheus
       marketplace:
+        # renovate: depName="Cert-manager-Kubernetes"
         id: 20842
         revision: 3
     cnpg:
@@ -61,6 +62,7 @@ dashboards:
         - name: "${DS_PROMETHEUS}"
           value: Prometheus
       marketplace:
+        # renovate: depName="CloudNativePG"
         id: 20417
         revision: 4
     flux-cluster:
@@ -87,6 +89,7 @@ dashboards:
         - name: "${DS_PROMETHEUS}"
           value: Prometheus
       marketplace:
+        # renovate: depName="Metallb"
         id: 20162
         revision: 6
     nginx:
@@ -113,6 +116,7 @@ dashboards:
         - name: "${DS_PROMETHEUS}"
           value: Prometheus
       marketplace:
+        # renovate: depName="SMARTctl Exporter Dashboard"
         id: 22604
         revision: 2
     traefik:
@@ -123,6 +127,7 @@ dashboards:
         - name: "${DS_PROMETHEUS}"
           value: Prometheus
       marketplace:
+        # renovate: depName="Traefik Official Standalone Dashboard"
         id: 17346
         revision: 9
 
