@@ -48,7 +48,7 @@ dashboards:
 - `enabled` turn on/off the dashboard
 - `failOnError` if enabled any failure during the download, decoding, or provisioning of the dashboard will cause the Grafana deployment to stop and error out, preventing Grafana from deploying.
 - `b64content` automaticly decodes base64 encoded dashboards
-- `datasource: { name: "", value: "" }` A list of maps where entry allows specifying a variable which needs to be replaced with a give value. You should lookup in the dashboard's JSON file which variables need to be set. Variable substitutions need to be as they appear in the JSON, including brackets (`${...}`), if present. Keep in mind that in deployments like flux you may need to escape some characters.
+- `datasource: { name: "", value: "" }` defines a list of mappings used to replace specific variables within a dashboard's JSON file. You must consult the dashboard's JSON structure to identify which variables need replacement. The variable substitutions must match their exact appearance in the JSON, including any brackets (e.g., `${...}`). Be aware that specific deployment environments, such as Flux, might require escaping certain characters.
 - `id` numbered id from https://grafana.com/grafana/dashboards/.
 - `revision` numbered revision from https://grafana.com/grafana/dashboards/.
 - `url` url where to download the dashboard from.
